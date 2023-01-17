@@ -3,30 +3,10 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ContactUs from "./pages/contactUs";
-import Home from "./pages/home";
-import Farnoosh from "./pages/farnoosh";
-import AllMovies from "./pages/allMovies";
+import { RouterProvider } from "react-router-dom";
+import router from "./routes";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/all",
-    element: <AllMovies />,
-  },
-  {
-    path: "/farnoosh",
-    element: <Farnoosh />,
-  },
-  {
-    path: "/aboutus",
-    element: <ContactUs />,
-  },
-]);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={router} />);
 

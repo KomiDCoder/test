@@ -5,6 +5,7 @@ import Style from "./style";
 
 export default function MovieList(props) {
   const { byType, title, byTime } = props;
+  const [loading , setLoading]=useState(false)
   const [movie, setMovie] = useState([]);
   function renderTitle(item) {
     if (item.hasOwnProperty("original_title")) {
@@ -12,11 +13,13 @@ export default function MovieList(props) {
     } else return item.original_name;
   }
   async function getApi() {
-    const response = await api.get(`/trending/${byType}/${byTime}`, {
+    setLoading(true)
+     const response = await api.get(`/trending/${byType}/${byTime}`, {
       params: {
         api_key: "f37eb1e5c885b9a492659f52dd92b99e",
       },
     });
+    setLoading(false)
     setMovie(response.data.results);
   }
   // function renderTitle(item) {
@@ -60,7 +63,7 @@ export default function MovieList(props) {
   return (
     <Style>
       <h1 className="main-title"> {title}</h1>
-      <ul className="movie-list">{renderFarm()}</ul>
+      <ul className="movie-list">{loading === true ? "loading..." : renderFarm()}</ul>
     </Style>
   );
 }
